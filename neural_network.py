@@ -57,6 +57,7 @@ class NeuralNetwork:
 
         for i in range(num_filters_l2):
             convolved_image = convolve(layer_1, self.filters2[:, :, :, i], mode='valid').reshape(132, 200)
+            convolved_image = convolved_image + self.biases2[i, 0]
             convolved_image = self.reLU(convolved_image)
 
             max_pooled_image = self.max_pool(convolved_image, (2, 2), 2)
