@@ -39,7 +39,7 @@ class NeuralNetwork:
         return mp
 
 
-    def query_cnn(self, map_image):
+    def query_cnn(self, map_image): # cnn - convolutional neural network
 
         num_filters_l1 = self.filters1.shape[3]
         num_filters_l2 = self.filters2.shape[3]
@@ -68,5 +68,5 @@ class NeuralNetwork:
 
 
 
-    def query_ann(self):
+    def query_ann(self): # ann - artifical/vanilla neural network
         return
