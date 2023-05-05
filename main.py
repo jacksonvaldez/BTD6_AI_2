@@ -25,4 +25,3 @@ biases2 = np.load('trained_params/biases2.npy')
 
 neural_net = NeuralNetwork(filters1, biases1, filters2, biases2)
 query = neural_net.query_cnn(screenshot)
-print('s')

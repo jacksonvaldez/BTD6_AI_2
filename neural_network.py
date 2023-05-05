@@ -63,10 +63,10 @@ class NeuralNetwork:
             max_pooled_image = self.max_pool(convolved_image, (2, 2), 2)
             layer_2.append(max_pooled_image)
         layer_2 = np.stack(layer_2, axis=2)
-
-        pdb.set_trace()
         
-        return
+        return layer_2
+
+
 
     def query_ann(self):
         return
