@@ -7,7 +7,7 @@ import math
 class NeuralNetwork:
     # CREATE Neural Network and set up parameters
 
-    def __init__(self, tower_positions, filters1, biases1, filters2, biases2, weights1, weights2, weights3_p1, weights3_p2, weights3_p3, weights4_p1, weights4_p2, biases3, biases4, biases5_p1, biases5_p2, biases5_p3, biases6_p1, biases6_p2):
+    def __init__(self, tower_positions, filters1, biases1, filters2, biases2, weights1, weights2_p1, weights2_p2, weights2_p3, weights2_p4, weights2_p5, weights2_p6, biases3, biases4_p1, biases4_p2, biases4_p3, biases4_p4, biases4_p5, biases4_p6):
         self.tower_positions = tower_positions
 
         self.filters1 = filters1
@@ -16,19 +16,19 @@ class NeuralNetwork:
         self.biases2 = biases2
 
         self.weights1 = weights1
-        self.weights2 = weights2
-        self.weights3_p1 = weights3_p1
-        self.weights3_p2 = weights3_p2
-        self.weights3_p3 = weights3_p3
-        self.weights4_p1 = weights4_p1
-        self.weights4_p2 = weights4_p2
+        self.weights2_p1 = weights2_p1
+        self.weights2_p2 = weights2_p2
+        self.weights2_p3 = weights2_p3
+        self.weights2_p4 = weights2_p4
+        self.weights2_p5 = weights2_p5
+        self.weights2_p6 = weights2_p6
         self.biases3 = biases3
-        self.biases4 = biases4
-        self.biases5_p1 = biases5_p1
-        self.biases5_p2 = biases5_p2
-        self.biases5_p3 = biases5_p3
-        self.biases6_p1 = biases6_p1
-        self.biases6_p2 = biases6_p2
+        self.biases4_p1 = biases4_p1
+        self.biases4_p2 = biases4_p2
+        self.biases4_p3 = biases4_p3
+        self.biases4_p4 = biases4_p4
+        self.biases4_p5 = biases4_p5
+        self.biases4_p6 = biases4_p6
         return
         
     def softmax(self, x):
@@ -89,6 +89,7 @@ class NeuralNetwork:
             max_pooled_image = self.max_pool(convolved_image, (2, 2), 2)
             layer_2.append(max_pooled_image)
         layer_2 = np.stack(layer_2, axis=2)
+        layer_2 = layer_2 / np.max(layer_2)
         
         return layer_2
 
@@ -97,16 +98,15 @@ class NeuralNetwork:
     def query_ann(self, layer_2): # ann - artifical/vanilla neural network
         layer_3 = self.weights1 * layer_2.flatten().reshape(211200, 1)
         layer_3 = np.sum(layer_3, axis=0)
-        layer_3 = layer_3.reshape(30, 1) + self.biases3
+        layer_3 = layer_3.reshape(48, 1) + self.biases3
         layer_3 = self.reLU(layer_3)
 
-
-        layer_4 = self.weights2 * layer_3
-        layer_4 = np.sum(layer_4, axis=0)
-        layer_4 = layer_4.reshape(4, 1) + self.biases4
-        layer_4 = self.reLU(layer_4)
+        layer_4_p1 = self.weights2_p1 * layer_3
+        layer_4_p1 = np.sum(layer_4_p1, axis=0)
+        layer_4_p1 = layer_4_p1.reshape(4, 1) + self.biases4_p1
+        layer_4_p1 = self.reLU(layer_4_p1)
         
-        action = layer_4.argmax()
+        action = layer_4_p1.argmax()
         if self.tower_positions.shape[0] == 0: # If there are no towers, the output must be action 0 (place tower)
             action = 0
         # 0: Place Tower
@@ -114,37 +114,33 @@ class NeuralNetwork:
         # 2: Sell Tower
         # 3: Do Nothing
 
-
         if action == 0: # Place Tower
-            layer_5 = self.weights3_p1 * layer_4
-            layer_5 = np.sum(layer_5, axis=0)
-            layer_5 = layer_5.reshape(109350, 1) + self.biases5_p1
-            layer_5 = self.reLU(layer_5)
-            layer_6 = self.weights4_p1 * layer_5
-            layer_6 = np.sum(layer_6, axis=0)
-            layer_6 = layer_6.reshape(23, 1) + self.biases6_p1
-            position = self.position(layer_5)
-            tower = layer_6.argmax()
+            layer_4_p2 = self.weights2_p2 * layer_3
+            layer_4_p2 = np.sum(layer_4_p2, axis=0).reshape(109350, 1)
+
+            layer_4_p3 = self.weights2_p3 * layer_3
+            layer_4_p3 = np.sum(layer_4_p3, axis=0).reshape(23, 1)
+
+            position = self.position(layer_4_p2)
+            tower = layer_4_p3.argmax()
             return [action, position, tower]
 
         elif action == 1: # Upgrade Tower
-            layer_5 = self.weights3_p2 * layer_4
-            layer_5 = np.sum(layer_5, axis=0)
-            layer_5 = layer_5.reshape(109350, 1) + self.biases5_p2
-            layer_5 = self.reLU(layer_5)
-            layer_6 = self.weights4_p2 * layer_5
-            layer_6 = np.sum(layer_6, axis=0)
-            layer_6 = layer_6.reshape(3, 1) + self.biases6_p2
-            position = self.position(layer_5)
-            upgrade_path = layer_6.argmax()
+            layer_4_p4 = self.weights2_p4 * layer_3
+            layer_4_p4 = np.sum(layer_4_p4, axis=0).reshape(109350, 1)
+
+            layer_4_p5 = self.weights2_p5 * layer_3
+            layer_4_p5 = np.sum(layer_4_p5, axis=0).reshape(3, 1)
+
+            position = self.position(layer_4_p4)
+            upgrade_path = layer_4_p5.argmax()
             return [action, position, upgrade_path]
 
         elif action == 2: # Sell Tower
-            layer_5 = self.weights3_p3 * layer_4
-            layer_5 = np.sum(layer_5, axis=0)
-            layer_5 = layer_5.reshape(109350, 1) + self.biases5_p3
-            layer_5 = self.reLU(layer_5)
-            position = self.position(layer_5)
+            layer_4_p6 = self.weights2_p6 * layer_3
+            layer_4_p6 = np.sum(layer_4_p6, axis=0).reshape(109350, 1)
+
+            position = self.position(layer_4_p6)
             return [action, position]
 
         elif action == 3: # Do Nothing
