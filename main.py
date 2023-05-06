@@ -7,25 +7,27 @@ from neural_network import NeuralNetwork
 from game_interface import GameInterface
 import time
 
-filters1 = np.load('trained_params/filters1.npy')
-filters2 = np.load('trained_params/filters2.npy')
-biases1 = np.load('trained_params/biases1.npy')
-biases2 = np.load('trained_params/biases2.npy')
+params_path = "mutated"
 
-weights1 = np.load('trained_params/weights1.npy')
-weights2 = np.load('trained_params/weights2.npy')
-weights3_p1 = np.load('trained_params/weights3_p1.npy')
-weights3_p2 = np.load('trained_params/weights3_p2.npy')
-weights3_p3 = np.load('trained_params/weights3_p3.npy')
-weights4_p1 = np.load('trained_params/weights4_p1.npy')
-weights4_p2 = np.load('trained_params/weights4_p2.npy')
-biases3 = np.load('trained_params/biases3.npy')
-biases4 = np.load('trained_params/biases4.npy')
-biases5_p1 = np.load('trained_params/biases5_p1.npy')
-biases5_p2 = np.load('trained_params/biases5_p2.npy')
-biases5_p3 = np.load('trained_params/biases5_p3.npy')
-biases6_p1 = np.load('trained_params/biases6_p1.npy')
-biases6_p2 = np.load('trained_params/biases6_p2.npy')
+filters1 = np.load(f"{params_path}_params/filters1.npy")
+filters2 = np.load(f"{params_path}_params/filters2.npy")
+biases1 = np.load(f"{params_path}_params/biases1.npy")
+biases2 = np.load(f"{params_path}_params/biases2.npy")
+
+weights1 = np.load(f"{params_path}_params/weights1.npy")
+weights2 = np.load(f"{params_path}_params/weights2.npy")
+weights3_p1 = np.load(f"{params_path}_params/weights3_p1.npy")
+weights3_p2 = np.load(f"{params_path}_params/weights3_p2.npy")
+weights3_p3 = np.load(f"{params_path}_params/weights3_p3.npy")
+weights4_p1 = np.load(f"{params_path}_params/weights4_p1.npy")
+weights4_p2 = np.load(f"{params_path}_params/weights4_p2.npy")
+biases3 = np.load(f"{params_path}_params/biases3.npy")
+biases4 = np.load(f"{params_path}_params/biases4.npy")
+biases5_p1 = np.load(f"{params_path}_params/biases5_p1.npy")
+biases5_p2 = np.load(f"{params_path}_params/biases5_p2.npy")
+biases5_p3 = np.load(f"{params_path}_params/biases5_p3.npy")
+biases6_p1 = np.load(f"{params_path}_params/biases6_p1.npy")
+biases6_p2 = np.load(f"{params_path}_params/biases6_p2.npy")
 
 tower_positions = np.load('tower_positions.npy')
 
