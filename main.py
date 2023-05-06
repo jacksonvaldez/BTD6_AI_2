@@ -5,6 +5,11 @@ import numpy as np
 import cv2
 from neural_network import NeuralNetwork
 from game_interface import GameInterface
+import time
+
+pyautogui.click(x=48, y=0)
+pyautogui.click(x=48, y=0)
+time.sleep(0.2)
 
 left = 24
 top = 0

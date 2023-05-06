@@ -36,9 +36,6 @@ class GameInterface:
 
 
     def place_tower(self, position, tower):
-        pyautogui.click(x=48, y=0)
-        pyautogui.click(x=48, y=0)
-
         coordinates = self.position_to_coords(position)
 
         print(f"Place a(n) {self.tower_names[tower]} at {coordinates[0]} {coordinates[1]}")
@@ -67,9 +64,6 @@ class GameInterface:
         return
 
     def upgrade_tower(self, position, upgrade_path):
-        pyautogui.click(x=48, y=0)
-        pyautogui.click(x=48, y=0)
-
         if self.tower_positions.shape[0] == 0:
             print("Cannot upgrade tower, there are no towers placed")
             return
@@ -101,9 +95,6 @@ class GameInterface:
         return
 
     def sell_tower(self, position):
-        pyautogui.click(x=48, y=0)
-        pyautogui.click(x=48, y=0)
-
         if self.tower_positions.shape[0] == 0:
             print("Cannot sell tower, there are no towers placed")
             return
