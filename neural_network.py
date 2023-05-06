@@ -120,6 +120,7 @@ class NeuralNetwork:
             layer_6 = layer_6.reshape(23, 1) + self.biases6_p1
             coordinates = self.coordinates(layer_5)
             tower = layer_6.argmax()
+            return [action, coordinates, tower]
 
         elif action == 1: # Upgrade Tower
             layer_5 = self.weights3_p2 * layer_4
@@ -131,6 +132,7 @@ class NeuralNetwork:
             layer_6 = layer_6.reshape(3, 1) + self.biases6_p2
             coordinates = self.coordinates(layer_5)
             upgrade_path = layer_6.argmax()
+            return [action, coordinates, upgrade_path]
 
         elif action == 2: # Sell Tower
             layer_5 = self.weights3_p3 * layer_4
@@ -138,10 +140,7 @@ class NeuralNetwork:
             layer_5 = layer_5.reshape(109350, 1) + self.biases5_p3
             layer_5 = self.reLU(layer_5)
             coordinates = self.coordinates(layer_5)
+            return [action, coordinates]
 
         elif action == 3:
-            None
-
-        pdb.set_trace()
-
-        return
+            return [action]

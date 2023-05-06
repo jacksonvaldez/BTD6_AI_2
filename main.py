@@ -41,3 +41,12 @@ biases6_p2 = np.load('trained_params/biases6_p2.npy')
 neural_net = NeuralNetwork(filters1, biases1, filters2, biases2, weights1, weights2, weights3_p1, weights3_p2, weights3_p3, weights4_p1, weights4_p2, biases3, biases4, biases5_p1, biases5_p2, biases5_p3, biases6_p1, biases6_p2)
 query_cnn = neural_net.query_cnn(screenshot)
 query_ann = neural_net.query_ann(query_cnn)
+
+if query_ann[0] == 0: # Place Tower
+	e = 1
+elif query_ann[0] == 1: # Upgrade Tower
+	e = 1
+elif query_ann[0] == 2: # Sell Tower
+	e = 1
+elif query_ann[0] == 3: # Do Nothing
+	e = 1
