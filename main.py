@@ -29,29 +29,30 @@ biases6_p2 = np.load('trained_params/biases6_p2.npy')
 
 tower_positions = np.load('tower_positions.npy')
 
-
 game_interface = GameInterface(tower_positions)
-screenshot = game_interface.take_screenshot()
-
 neural_net = NeuralNetwork(filters1, biases1, filters2, biases2, weights1, weights2, weights3_p1, weights3_p2, weights3_p3, weights4_p1, weights4_p2, biases3, biases4, biases5_p1, biases5_p2, biases5_p3, biases6_p1, biases6_p2)
-query_cnn = neural_net.query_cnn(screenshot)
-query_ann = neural_net.query_ann(query_cnn)
 
+for x in range(1000):
+	time.sleep(5)
+	
+	screenshot = game_interface.take_screenshot()
+	query_cnn = neural_net.query_cnn(screenshot)
+	query_ann = neural_net.query_ann(query_cnn)
 
-if query_ann[0] == 0: # Place Tower
-	action, position, tower = query_ann
-	game_interface.place_tower(position, tower)
+	if query_ann[0] == 0: # Place Tower
+		action, position, tower = query_ann
+		game_interface.place_tower(position, tower)
 
-elif query_ann[0] == 1: # Upgrade Tower
-	action, position, upgrade_path = query_ann
-	game_interface.upgrade_tower(position, upgrade_path)
+	elif query_ann[0] == 1: # Upgrade Tower
+		action, position, upgrade_path = query_ann
+		game_interface.upgrade_tower(position, upgrade_path)
 
-elif query_ann[0] == 2: # Sell Tower
-	action, position = query_ann
-	game_interface.sell_tower(position)
+	elif query_ann[0] == 2: # Sell Tower
+		action, position = query_ann
+		game_interface.sell_tower(position)
 
-elif query_ann[0] == 3: # Do Nothing
-	print("Do Nothing")
-	action = query_ann
+	elif query_ann[0] == 3: # Do Nothing
+		print("Do Nothing")
+		action = query_ann
 
 np.save('tower_positions.npy', game_interface.tower_positions)
