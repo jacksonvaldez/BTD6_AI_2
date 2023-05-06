@@ -4,6 +4,7 @@ import pdb
 import numpy as np
 import cv2
 from neural_network import NeuralNetwork
+from game_interface import GameInterface
 
 left = 24
 top = 0
@@ -42,11 +43,17 @@ neural_net = NeuralNetwork(filters1, biases1, filters2, biases2, weights1, weigh
 query_cnn = neural_net.query_cnn(screenshot)
 query_ann = neural_net.query_ann(query_cnn)
 
+tower_positions = np.array([])
+game_interface = GameInterface(tower_positions)
+
 if query_ann[0] == 0: # Place Tower
-	e = 1
+	action, coordinates, tower = query_ann
+
 elif query_ann[0] == 1: # Upgrade Tower
-	e = 1
+	action, coordinates, upgrade_path = query_ann
+
 elif query_ann[0] == 2: # Sell Tower
-	e = 1
+	action, coordinates = query_ann
+
 elif query_ann[0] == 3: # Do Nothing
-	e = 1
+	action = query_ann
