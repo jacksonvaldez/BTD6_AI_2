@@ -75,8 +75,25 @@ class GameInterface:
         closest_tower_position = self.closest_tower(position)
         closest_tower_coords = self.position_to_coords(closest_tower_position)
 
-        print(f"Upgrade tower closest to coordinates {coordinates[0]} {coordinates[1]}")
+        chosen_path = self.path_names[upgrade_path]
+        print(f"Upgrade the {chosen_path} at tower closest to coordinates {coordinates[0]} {coordinates[1]}")
         print(f"-------> Tower at: {closest_tower_coords[0]} {closest_tower_coords[1]}")
+
+        pyautogui.click(x=closest_tower_coords[0], y=closest_tower_coords[1])
+
+        if closest_tower_coords[0] >= 835:
+            print("Tower is on the right")
+            upgrade_clicks = [[330, 490], [330, 640], [330, 790]] # [top, middle, bottom]
+            upgrade_click = upgrade_clicks[upgrade_path]
+            time.sleep(0.1)
+            pyautogui.click(x=upgrade_click[0], y=upgrade_click[1])
+
+        elif closest_tower_coords[0] < 835:
+            print("Tower is on the left")
+            upgrade_clicks = [[1550, 490], [1550, 640], [1550, 790]] # [top, middle, bottom]
+            upgrade_click = upgrade_clicks[upgrade_path]
+            time.sleep(0.1)
+            pyautogui.click(x=upgrade_click[0], y=upgrade_click[1])
         return
 
     def sell_tower(self, position):
