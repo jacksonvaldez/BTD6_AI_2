@@ -43,17 +43,22 @@ neural_net = NeuralNetwork(filters1, biases1, filters2, biases2, weights1, weigh
 query_cnn = neural_net.query_cnn(screenshot)
 query_ann = neural_net.query_ann(query_cnn)
 
-tower_positions = np.array([])
+tower_positions = np.load('tower_positions.npy')
 game_interface = GameInterface(tower_positions)
 
 if query_ann[0] == 0: # Place Tower
 	action, coordinates, tower = query_ann
+	game_interface.place_tower(coordinates, tower)
 
 elif query_ann[0] == 1: # Upgrade Tower
 	action, coordinates, upgrade_path = query_ann
+	game_interface.upgrade_tower(coordinates, upgrade_path)
 
 elif query_ann[0] == 2: # Sell Tower
 	action, coordinates = query_ann
+	game_interface.sell_tower(coordinates)
 
 elif query_ann[0] == 3: # Do Nothing
 	action = query_ann
+
+np.save('tower_positions.npy', game_interface.tower_positions)
