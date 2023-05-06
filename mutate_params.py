@@ -19,7 +19,7 @@ biases5_p3 = np.load('trained_params/biases5_p3.npy')
 biases6_p1 = np.load('trained_params/biases6_p1.npy')
 biases6_p2 = np.load('trained_params/biases6_p2.npy')
 
-mutation_rate = 0.001
+mutation_rate = 1.0
 
 filters1_gradient = np.random.uniform(-mutation_rate, mutation_rate, (3, 3, 3, 16))
 filters2_gradient = np.random.uniform(-mutation_rate, mutation_rate, (3, 3, 16, 32))
