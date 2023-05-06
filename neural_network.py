@@ -7,7 +7,9 @@ import math
 class NeuralNetwork:
     # CREATE Neural Network and set up parameters
 
-    def __init__(self, filters1, biases1, filters2, biases2, weights1, weights2, weights3_p1, weights3_p2, weights3_p3, weights4_p1, weights4_p2, biases3, biases4, biases5_p1, biases5_p2, biases5_p3, biases6_p1, biases6_p2):
+    def __init__(self, tower_positions, filters1, biases1, filters2, biases2, weights1, weights2, weights3_p1, weights3_p2, weights3_p3, weights4_p1, weights4_p2, biases3, biases4, biases5_p1, biases5_p2, biases5_p3, biases6_p1, biases6_p2):
+        self.tower_positions = tower_positions
+
         self.filters1 = filters1
         self.filters2 = filters2
         self.biases1 = biases1
@@ -105,10 +107,13 @@ class NeuralNetwork:
         layer_4 = self.reLU(layer_4)
         
         action = layer_4.argmax()
+        if self.tower_positions.shape[0] == 0: # If there are no towers, the output must be action 0 (place tower)
+            action = 0
         # 0: Place Tower
         # 1: Upgrade Tower
         # 2: Sell Tower
         # 3: Do Nothing
+
 
         if action == 0: # Place Tower
             layer_5 = self.weights3_p1 * layer_4
