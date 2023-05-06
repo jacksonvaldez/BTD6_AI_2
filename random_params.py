@@ -18,13 +18,13 @@ weights4_p1 = np.random.uniform(-1.0, 1.0, (109350, 23))
 weights4_p2 = np.random.uniform(-1.0, 1.0, (109350, 3))
 
 # Creates biases for the feed forward neural network
-biases3 = np.random.uniform(-1.0, 1.0, (30, 1)) # Feed Forward layer 1
-biases4 = np.random.uniform(-1.0, 1.0, (4, 1)) # Feed Forward layer 2
-biases5_p1 = np.random.uniform(-1.0, 1.0, (109350, 1)) # Feed Forward layer 3.1
-biases5_p2 = np.random.uniform(-1.0, 1.0, (109350, 1)) # Feed Forward layer 3.2
-biases5_p3 = np.random.uniform(-1.0, 1.0, (109350, 1)) # Feed Forward layer 3.3
-biases6_p1 = np.random.uniform(-1.0, 1.0, (23, 1)) # Feed Forward layer 4.1
-biases6_p2 = np.random.uniform(-1.0, 1.0, (3, 1)) # Feed Forward layer 4.2
+biases3 = np.full(30, 0, dtype=np.float64).reshape(30, 1) # Feed Forward layer 1
+biases4 = np.full(4, 0, dtype=np.float64).reshape(4, 1) # Feed Forward layer 2
+biases5_p1 = np.full(109350, 0, dtype=np.float64).reshape(109350, 1) # Feed Forward layer 3.1
+biases5_p2 = np.full(109350, 0, dtype=np.float64).reshape(109350, 1) # Feed Forward layer 3.2
+biases5_p3 = np.full(109350, 0, dtype=np.float64).reshape(109350, 1) # Feed Forward layer 3.3
+biases6_p1 = np.full(23, 0, dtype=np.float64).reshape(23, 1) # Feed Forward layer 4.1
+biases6_p2 = np.full(3, 0, dtype=np.float64).reshape(3, 1) # Feed Forward layer 4.2
 
 np.save('trained_params/filters1.npy', filters1)
 np.save('trained_params/filters2.npy', filters2)
