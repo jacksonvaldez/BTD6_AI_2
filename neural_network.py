@@ -54,10 +54,10 @@ class NeuralNetwork:
         return mp
 
 
-    def coordinates(self, layer_5):
+    def position(self, layer_5):
         max_value = np.max(layer_5)
-        coordinates = np.unravel_index(np.argmax(layer_5, axis=None), (405, 270))
-        return coordinates
+        position = np.unravel_index(np.argmax(layer_5, axis=None), (405, 270))
+        return position
 
 
 
@@ -118,9 +118,9 @@ class NeuralNetwork:
             layer_6 = self.weights4_p1 * layer_5
             layer_6 = np.sum(layer_6, axis=0)
             layer_6 = layer_6.reshape(23, 1) + self.biases6_p1
-            coordinates = self.coordinates(layer_5)
+            position = self.position(layer_5)
             tower = layer_6.argmax()
-            return [action, coordinates, tower]
+            return [action, position, tower]
 
         elif action == 1: # Upgrade Tower
             layer_5 = self.weights3_p2 * layer_4
@@ -130,17 +130,17 @@ class NeuralNetwork:
             layer_6 = self.weights4_p2 * layer_5
             layer_6 = np.sum(layer_6, axis=0)
             layer_6 = layer_6.reshape(3, 1) + self.biases6_p2
-            coordinates = self.coordinates(layer_5)
+            position = self.position(layer_5)
             upgrade_path = layer_6.argmax()
-            return [action, coordinates, upgrade_path]
+            return [action, position, upgrade_path]
 
         elif action == 2: # Sell Tower
             layer_5 = self.weights3_p3 * layer_4
             layer_5 = np.sum(layer_5, axis=0)
             layer_5 = layer_5.reshape(109350, 1) + self.biases5_p3
             layer_5 = self.reLU(layer_5)
-            coordinates = self.coordinates(layer_5)
-            return [action, coordinates]
+            position = self.position(layer_5)
+            return [action, position]
 
         elif action == 3:
             return [action]

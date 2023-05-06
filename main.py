@@ -47,16 +47,16 @@ tower_positions = np.load('tower_positions.npy')
 game_interface = GameInterface(tower_positions)
 
 if query_ann[0] == 0: # Place Tower
-	action, coordinates, tower = query_ann
-	game_interface.place_tower(coordinates, tower)
+	action, position, tower = query_ann
+	game_interface.place_tower(position, tower)
 
 elif query_ann[0] == 1: # Upgrade Tower
-	action, coordinates, upgrade_path = query_ann
-	game_interface.upgrade_tower(coordinates, upgrade_path)
+	action, position, upgrade_path = query_ann
+	game_interface.upgrade_tower(position, upgrade_path)
 
 elif query_ann[0] == 2: # Sell Tower
-	action, coordinates = query_ann
-	game_interface.sell_tower(coordinates)
+	action, position = query_ann
+	game_interface.sell_tower(position)
 
 elif query_ann[0] == 3: # Do Nothing
 	action = query_ann
