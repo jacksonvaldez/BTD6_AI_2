@@ -70,6 +70,10 @@ class GameInterface:
         pyautogui.click(x=48, y=0)
         pyautogui.click(x=48, y=0)
 
+        if self.tower_positions.shape[0] == 0:
+            print("Cannot upgrade tower, there are no towers placed")
+            return
+
         coordinates = self.position_to_coords(position)
 
         closest_tower_position = self.closest_tower(position)
@@ -100,6 +104,10 @@ class GameInterface:
         pyautogui.click(x=48, y=0)
         pyautogui.click(x=48, y=0)
 
+        if self.tower_positions.shape[0] == 0:
+            print("Cannot sell tower, there are no towers placed")
+            return
+
         coordinates = self.position_to_coords(position)
 
         closest_tower_position = self.closest_tower(position)
@@ -107,4 +115,16 @@ class GameInterface:
 
         print(f"Sell tower closest to coordinates {coordinates[0]} {coordinates[1]}")
         print(f"-------> Tower at: {closest_tower_coords[0]} {closest_tower_coords[1]}")
+
+        pyautogui.click(x=closest_tower_coords[0], y=closest_tower_coords[1])
+
+        if closest_tower_coords[0] >= 835:
+            print("Tower is on the right")
+            time.sleep(0.1)
+            pyautogui.click(x=325, y=910)
+
+        elif closest_tower_coords[0] < 835:
+            print("Tower is on the left")
+            time.sleep(0.1)
+            pyautogui.click(x=1545, y=910)
         return

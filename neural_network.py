@@ -142,5 +142,5 @@ class NeuralNetwork:
             position = self.position(layer_5)
             return [action, position]
 
-        elif action == 3:
+        elif action == 3: # Do Nothing
             return [action]
