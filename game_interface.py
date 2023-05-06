@@ -127,4 +127,7 @@ class GameInterface:
             print("Tower is on the left")
             time.sleep(0.1)
             pyautogui.click(x=1545, y=910)
+
+        self.tower_positions = self.tower_positions[self.tower_positions != closest_tower_position]
+        
         return
