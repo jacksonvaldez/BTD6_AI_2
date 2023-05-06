@@ -68,5 +68,6 @@ class NeuralNetwork:
 
 
 
-    def query_ann(self): # ann - artifical/vanilla neural network
+    def query_ann(self, layer_0): # ann - artifical/vanilla neural network
+        # layer_1 = 
         return
