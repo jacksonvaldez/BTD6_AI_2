@@ -59,6 +59,7 @@ elif query_ann[0] == 2: # Sell Tower
 	game_interface.sell_tower(position)
 
 elif query_ann[0] == 3: # Do Nothing
+	print("Do Nothing")
 	action = query_ann
 
 np.save('tower_positions.npy', game_interface.tower_positions)
