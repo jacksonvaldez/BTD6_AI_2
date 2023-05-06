@@ -63,6 +63,8 @@ class NeuralNetwork:
 
     def query_cnn(self, map_image): # cnn - convolutional neural network
 
+        map_image = map_image / np.max(map_image)
+
         num_filters_l1 = self.filters1.shape[3]
         num_filters_l2 = self.filters2.shape[3]
         layer_1 = []
@@ -85,7 +87,6 @@ class NeuralNetwork:
             max_pooled_image = self.max_pool(convolved_image, (2, 2), 2)
             layer_2.append(max_pooled_image)
         layer_2 = np.stack(layer_2, axis=2)
-        layer_2 = layer_2 / np.max(layer_2)
         
         return layer_2
 
