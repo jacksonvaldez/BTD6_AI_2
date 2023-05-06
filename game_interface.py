@@ -3,6 +3,7 @@ import pdb
 import pyautogui
 import math
 import time
+from PIL import Image, ImageGrab
 
 
 class GameInterface:
@@ -12,6 +13,23 @@ class GameInterface:
         self.tower_names = ['Dart Monkey', 'Boomerang Monkey', 'Bomb Shooter', 'Tack Shooter', 'Ice Monkey', 'Glue Gunner', 'Sniper Monkey', 'Monkey Sub', 'Monkey Buccaneer', 'Monkey Ace', 'Heli Pilot', 'Mortar Monkey', 'Dartling Gunner', 'Wizard Monkey', 'Super Monkey', 'Ninja Monkey', 'Alchemist', 'Druid', 'Banana Farm', 'Spike Factory', 'Monkey Village', 'Engineer Monkey', 'Beast Handler']
         self.path_names = ['Top Path', 'Middle Path', 'Bottom Path']
         return
+
+    def take_screenshot(self):
+        pyautogui.click(x=48, y=0)
+        pyautogui.click(x=48, y=0)
+        time.sleep(0.2)
+
+        left = 24
+        top = 0
+        width = 1620
+        height = 1080
+        region = (left, top, left+width, top+height)
+        screenshot = ImageGrab.grab(bbox=region) # Take a screenshot of the map
+        screenshot = screenshot.resize((405, 270))
+        screenshot = screenshot.convert("RGB") # Convert the screenshot to RGB format
+        screenshot.save("screenshot.png") # Save the screenshot to a file
+        screenshot = np.array(screenshot, dtype=np.float64) # Convert screenshot to numpy array
+        return screenshot
 
     def distance(self, point_1, point_2):
         return math.sqrt((point_1[0] - point_2[0]) ** 2 + (point_1[1] - point_2[1]) ** 2)
@@ -46,7 +64,7 @@ class GameInterface:
         else:
             pyautogui.click(x=1770, y=950)
             pyautogui.scroll(-50)
-        time.sleep(0.5)
+        time.sleep(1)
 
         x_clicks = [1710, 1830]
         y_clicks = [210, 340, 475, 610, 740, 880]
