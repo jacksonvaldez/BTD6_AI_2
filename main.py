@@ -44,6 +44,7 @@ query_cnn = neural_net.query_cnn(screenshot)
 query_ann = neural_net.query_ann(query_cnn)
 
 tower_positions = np.load('tower_positions.npy')
+pdb.set_trace()
 game_interface = GameInterface(tower_positions)
 
 if query_ann[0] == 0: # Place Tower

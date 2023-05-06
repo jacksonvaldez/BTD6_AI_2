@@ -129,5 +129,6 @@ class GameInterface:
             pyautogui.click(x=1545, y=910)
 
         self.tower_positions = self.tower_positions[self.tower_positions != closest_tower_position]
-        
+        self.tower_positions = self.tower_positions.reshape(int(self.tower_positions.shape[0] / 2), 2)
+
         return
