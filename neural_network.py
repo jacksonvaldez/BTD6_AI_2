@@ -118,7 +118,7 @@ class NeuralNetwork:
         layer_5 = self.softmax(layer_5)
         layer_6 = self.weights4_2 * layer_5
         layer_6 = np.sum(layer_6, axis=0)
-        layer_6 = layer_6.reshape(3, 1) + self.biases6_1
+        layer_6 = layer_6.reshape(3, 1) + self.biases6_2
         layer_6 = self.softmax(layer_6)
         
         # Sell Tower
