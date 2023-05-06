@@ -9,8 +9,8 @@ biases1 = np.full(16, 0, dtype=np.float64).reshape(16, 1) # Convolution layer 1
 biases2 = np.full(32, 0, dtype=np.float64).reshape(32, 1) # Convolution layer 2
 
 # Creates weights for the feed forward neural network
-weights1 = np.random.uniform(-0.5, 0.5, (211200, 32))
-weights2 = np.random.uniform(-0.5, 0.5, (32, 4))
+weights1 = np.random.uniform(-0.5, 0.5, (211200, 30))
+weights2 = np.random.uniform(-0.5, 0.5, (30, 4))
 weights3_1 = np.random.uniform(-0.5, 0.5, (4, 109350))
 weights3_2 = np.random.uniform(-0.5, 0.5, (4, 109350))
 weights3_3 = np.random.uniform(-0.5, 0.5, (4, 109350))

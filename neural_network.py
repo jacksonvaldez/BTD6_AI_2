@@ -7,11 +7,26 @@ import math
 class NeuralNetwork:
     # CREATE Neural Network and set up parameters
 
-    def __init__(self, filters1, biases1, filters2, biases2):
+    def __init__(self, filters1, biases1, filters2, biases2, weights1, weights2, weights3_1, weights3_2, weights3_3, weights4_1, weights4_2, biases3, biases4, biases5_1, biases5_2, biases5_3, biases6_1, biases6_2):
         self.filters1 = filters1
         self.filters2 = filters2
         self.biases1 = biases1
         self.biases2 = biases2
+
+        self.weights1 = weights1
+        self.weights2 = weights2
+        self.weights3_1 = weights3_1
+        self.weights3_2 = weights3_2
+        self.weights3_3 = weights3_3
+        self.weights4_1 = weights4_1
+        self.weights4_2 = weights4_2
+        self.biases3 = biases3
+        self.biases4 = biases4
+        self.biases5_1 = biases5_1
+        self.biases5_2 = biases5_2
+        self.biases5_3 = biases5_3
+        self.biases6_1 = biases6_1
+        self.biases6_2 = biases6_2
         return
         
     def softmax(self, x):
@@ -68,6 +83,52 @@ class NeuralNetwork:
 
 
 
-    def query_ann(self, layer_0): # ann - artifical/vanilla neural network
-        # layer_1 = 
+    def query_ann(self, layer_2): # ann - artifical/vanilla neural network
+        layer_3 = self.weights1 * layer_2.flatten().reshape(211200, 1)
+        layer_3 = np.sum(layer_3, axis=0)
+        layer_3 = layer_3.reshape(30, 1) + self.biases3
+        layer_3 = self.reLU(layer_3)
+
+        layer_4 = self.weights2 * layer_3
+        layer_4 = np.sum(layer_4, axis=0)
+        layer_4 = layer_4.reshape(4, 1) + self.biases4
+        layer_4 = self.softmax(layer_4)
+        
+        action = layer_4.argmax()
+        # 0: Place Tower
+        # 1: Upgrade Tower
+        # 2: Sell Tower
+        # 3: Do Nothing
+
+
+        # Place Tower
+        # layer_5 = self.weights3_1 * layer_4
+        # layer_5 = np.sum(layer_5, axis=0)
+        # layer_5 = layer_5.reshape(109350, 1) + self.biases5_1
+        # layer_5 = self.softmax(layer_5)
+        # layer_6 = self.weights4_1 * layer_5
+        # layer_6 = np.sum(layer_6, axis=0)
+        # layer_6 = layer_6.reshape(23, 1) + self.biases6_1
+        # layer_6 = self.softmax(layer_6)
+
+        # Upgrade Tower
+        layer_5 = self.weights3_2 * layer_4
+        layer_5 = np.sum(layer_5, axis=0)
+        layer_5 = layer_5.reshape(109350, 1) + self.biases5_2
+        layer_5 = self.softmax(layer_5)
+        layer_6 = self.weights4_2 * layer_5
+        layer_6 = np.sum(layer_6, axis=0)
+        layer_6 = layer_6.reshape(3, 1) + self.biases6_1
+        layer_6 = self.softmax(layer_6)
+        
+        # Sell Tower
+        # layer_5 = self.weights3_3 * layer_4
+        # layer_5 = np.sum(layer_5, axis=0)
+        # layer_5 = layer_5.reshape(109350, 1) + self.biases5_3
+        # layer_5 = self.softmax(layer_5)
+        
+        # Do Nothing
+        
+
+
         return
