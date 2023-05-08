@@ -12,6 +12,7 @@ class GameInterface:
         self.tower_positions = tower_positions
         self.tower_names = ['Dart Monkey', 'Boomerang Monkey', 'Bomb Shooter', 'Tack Shooter', 'Ice Monkey', 'Glue Gunner', 'Sniper Monkey', 'Monkey Sub', 'Monkey Buccaneer', 'Monkey Ace', 'Heli Pilot', 'Mortar Monkey', 'Dartling Gunner', 'Wizard Monkey', 'Super Monkey', 'Ninja Monkey', 'Alchemist', 'Druid', 'Banana Farm', 'Spike Factory', 'Monkey Village', 'Engineer Monkey', 'Beast Handler']
         self.path_names = ['Top Path', 'Middle Path', 'Bottom Path']
+        pyautogui.FAILSAFE = False
         return
 
     def take_screenshot(self):
@@ -75,6 +76,11 @@ class GameInterface:
         
         pyautogui.click(x=x_click, y=y_click) # Select Tower
         pyautogui.click(x=coordinates[0], y=coordinates[1]) # Place Tower
+
+
+        pyautogui.click(x=1920, y=1080) # Click the terminal 1
+        pyautogui.move(300, 0) # Click the terminal 2
+        pyautogui.click() # Click the terminal 3
 
         success = input("Did the tower place successfuly? (y/n) ")
         if success == 'y':
