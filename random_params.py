@@ -9,22 +9,22 @@ biases1 = np.full(16, 0, dtype=np.float64).reshape(16, 1) # Convolution layer 1
 biases2 = np.full(32, 0, dtype=np.float64).reshape(32, 1) # Convolution layer 2
 
 # Creates weights for the feed forward neural network
-weights1 = np.random.uniform(-1.0, 1.0, (211200, 48))
-weights2_p1 = np.random.uniform(-1.0, 1.0, (48, 4))
-weights2_p2 = np.random.uniform(-1.0, 1.0, (48, 109350))
-weights2_p3 = np.random.uniform(-1.0, 1.0, (48, 23))
-weights2_p4 = np.random.uniform(-1.0, 1.0, (48, 109350))
-weights2_p5 = np.random.uniform(-1.0, 1.0, (48, 3))
-weights2_p6 = np.random.uniform(-1.0, 1.0, (48, 109350))
+weights1 = np.random.uniform(-1.0, 1.0, (211200, 128))
+weights2_p1 = np.random.uniform(-1.0, 1.0, (128, 4))
+weights2_p2 = np.random.uniform(-1.0, 1.0, (128, 256))
+weights2_p3 = np.random.uniform(-1.0, 1.0, (128, 23))
+weights2_p4 = np.random.uniform(-1.0, 1.0, (128, 256))
+weights2_p5 = np.random.uniform(-1.0, 1.0, (128, 3))
+weights2_p6 = np.random.uniform(-1.0, 1.0, (128, 256))
 
 # Creates biases for the feed forward neural network
-biases3 = np.full(48, 0, dtype=np.float64).reshape(48, 1) # Feed Forward layer 1
+biases3 = np.full(128, 0, dtype=np.float64).reshape(128, 1) # Feed Forward layer 1
 biases4_p1 = np.full(4, 0, dtype=np.float64).reshape(4, 1) # Feed Forward layer 2.1
-biases4_p2 = np.full(109350, 0, dtype=np.float64).reshape(109350, 1) # Feed Forward layer 2.1
+biases4_p2 = np.full(256, 0, dtype=np.float64).reshape(256, 1) # Feed Forward layer 2.1
 biases4_p3 = np.full(23, 0, dtype=np.float64).reshape(23, 1) # Feed Forward layer 2.1
-biases4_p4 = np.full(109350, 0, dtype=np.float64).reshape(109350, 1) # Feed Forward layer 2.1
+biases4_p4 = np.full(256, 0, dtype=np.float64).reshape(256, 1) # Feed Forward layer 2.1
 biases4_p5 = np.full(3, 0, dtype=np.float64).reshape(3, 1) # Feed Forward layer 2.1
-biases4_p6 = np.full(109350, 0, dtype=np.float64).reshape(109350, 1) # Feed Forward layer 2.1
+biases4_p6 = np.full(256, 0, dtype=np.float64).reshape(256, 1) # Feed Forward layer 2.1
 
 np.save('trained_params/filters1.npy', filters1)
 np.save('trained_params/filters2.npy', filters2)

@@ -35,7 +35,7 @@ game_interface = GameInterface(tower_positions)
 neural_net = NeuralNetwork(tower_positions, filters1, biases1, filters2, biases2, weights1, weights2_p1, weights2_p2, weights2_p3, weights2_p4, weights2_p5, weights2_p6, biases3, biases4_p1, biases4_p2, biases4_p3, biases4_p4, biases4_p5, biases4_p6)
 
 for x in range(1000):
-	time.sleep(5)
+	time.sleep(2)
 	
 	neural_net.tower_positions = game_interface.tower_positions
 	screenshot = game_interface.take_screenshot()
